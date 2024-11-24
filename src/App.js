@@ -21,13 +21,13 @@ export default function App() {
           {" "}
           open-sourced on GitHub{" "}
         </a>
-        and
+        and {""}
         <a
           href="https://merry-gnome-6832f9.netlify.app/"
           target="_blank"
           rel="noreferrer"
         >
-          host on Netlify
+          hosted on Netlify
         </a>
       </footer>
     </div>
