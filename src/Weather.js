@@ -3,16 +3,22 @@ import axios from "axios";
 import "./Weather.css";
 
 export default function Weather() {
-  const [ready, setReady] = useState(false);
-  const [temperature, setTemperature] = useState(null);
-  function handleResponse(response) {
-    console.log(response.data);
-    setTemperature(response.data.main.temp);
+  const [weatherData, setWeatherData] = useState({ ready: false });
 
-    setReady(true);
+  function handleResponse(response) {
+    setWeatherData({
+      ready: true,
+      temperature: response.data.daily[0].temperature.day, // Adjust for your API
+      wind: response.data.daily[0].wind.speed, // Adjust for your API
+      humidity: response.data.daily[0].temperature.humidity, // Adjust for your API
+      city: response.data.city,
+      description: response.data.daily[0].condition.description, // Weather description for the first day
+      iconUrl: response.data.daily[0].condition.icon_url,
+      date: "Monday 22:22",
+    });
   }
 
-  if (ready) {
+  if (weatherData.ready) {
     return (
       <div className="weather">
         <form>
@@ -34,21 +40,23 @@ export default function Weather() {
             </div>
           </div>
         </form>
-        <h1>Bristol</h1>
+        <h1>{weatherData.city}</h1>
         <ul>
-          <li>Monday 19:45</li>
-          <li>Mostly cloudy</li>
+          <li>{weatherData.date}</li>
+          <li className="text-capitalize">{weatherData.description}</li>
         </ul>
         <div className="row mt-3">
           <div className="col-6">
             <div className="clearfix">
               <img
-                src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png"
-                alt="placeholder"
+                src={weatherData.iconUrl}
+                alt={weatherData.description}
                 className="float-left"
               />
               <div className="float-left">
-                <span className="temperature">{Math.round(temperature)}</span>
+                <span className="temperature">
+                  {Math.round(weatherData.temperature)}
+                </span>
                 <span className="unit">°C</span>
               </div>
             </div>
@@ -56,8 +64,8 @@ export default function Weather() {
           <div className="col-6">
             <ul>
               <li>Preciptation: 15%</li>
-              <li>Humidity: 72%</li>
-              <li>Wind : 13 km/h</li>
+              <li>Humidity: {weatherData.humidity}%</li>
+              <li>Wind: {weatherData.wind} km/h</li>
             </ul>
           </div>
         </div>
