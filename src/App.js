@@ -12,7 +12,7 @@ export default function App() {
           <a
             href="https://github.com/eknox22/"
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
           >
             {" "}
             Emily Knox-Clifton
@@ -21,7 +21,7 @@ export default function App() {
           <a
             href="https://github.com/eknox22/React-Weather-Application"
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
           >
             {" "}
             open-sourced on GitHub{" "}
@@ -30,7 +30,7 @@ export default function App() {
           <a
             href="https://merry-gnome-6832f9.netlify.app/"
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
           >
             hosted on Netlify
           </a>
